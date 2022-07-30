@@ -5,6 +5,7 @@ import LoginForm from './LoginForm'
 import Message from './Message'
 import ArticleForm from './ArticleForm'
 import Spinner from './Spinner'
+import PrivateRoute from './PrivateRoute'
 
 import axios from 'axios'
 import { axiosWithAuth } from '../axios'
