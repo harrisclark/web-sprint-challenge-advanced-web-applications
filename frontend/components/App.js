@@ -109,10 +109,9 @@ export default function App() {
     setMessage('')
     axiosWithAuth().put(`${articlesUrl}/${article_id}`, article)
       .then(res => {
-        console.log('put response', res)
         setSpinnerOn(false)
         setMessage(res.data.message)
-        setArticles([...articles.filter(art => art.article_id !== article_id), res.data.article])
+        setArticles([...articles.filter(art => art.article_id !== article_id), res.data.article].sort((a, b) => a.article_id - b.article_id))
       })
     // ✨ implement
     // You got this!
@@ -145,24 +144,27 @@ export default function App() {
         </nav>
         <Routes>
           <Route path="/" element={<LoginForm login={login} />} />
-          <Route path="/articles" element={
-            <>
-              <ArticleForm
+          <Route path="/articles" element={<PrivateRoute />}>
+            <Route path="" element={
+              <>
+            <ArticleForm
                 postArticle={postArticle}
                 updateArticle={updateArticle}
                 setCurrentArticleId={setCurrentArticleId}
                 currentArticle={currentArticle}
 
-              />
-              <Articles 
+            />
+            <Articles 
                 articles={articles} 
                 getArticles={getArticles}
                 deleteArticle={deleteArticle}
                 setCurrentArticleId={setCurrentArticleId}
                 currentArticleId={currentArticleId}
-              />
+            />
             </>
-          } />
+              } />
+              
+          </Route>
         </Routes>
         <footer>Bloom Institute of Technology 2022</footer>
       </div>
