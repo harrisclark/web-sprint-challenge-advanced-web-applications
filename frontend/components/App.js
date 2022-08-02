@@ -20,7 +20,7 @@ export default function App() {
   const [currentArticleId, setCurrentArticleId] = useState(null)
   const [spinnerOn, setSpinnerOn] = useState(false)
 
-  //console.log(articles)
+
 
   const currentArticleArr = articles.filter(article => article.article_id === currentArticleId);
   const currentArticle = currentArticleArr[0]
